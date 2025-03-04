@@ -17,7 +17,6 @@ type Note struct {
 
 func (note Note) Display() {
 	fmt.Printf("Your note titled %v has the following content:\n\n%v\n\n", note.Title, note.Content)
-
 }
 
 func (note Note) Save() error {
@@ -35,7 +34,7 @@ func (note Note) Save() error {
 
 func New(title, content string) (Note, error) {
 	if title == "" || content == "" {
-		return Note{}, errors.New("Invalid input")
+		return Note{}, errors.New("Invalid input.")
 	}
 
 	return Note{
@@ -43,5 +42,4 @@ func New(title, content string) (Note, error) {
 		Content:   content,
 		CreatedAt: time.Now(),
 	}, nil
-
 }

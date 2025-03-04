@@ -13,7 +13,6 @@ type Todo struct {
 
 func (todo Todo) Display() {
 	fmt.Println(todo.Text)
-
 }
 
 func (todo Todo) Save() error {
@@ -30,11 +29,10 @@ func (todo Todo) Save() error {
 
 func New(content string) (Todo, error) {
 	if content == "" {
-		return Todo{}, errors.New("Invalid input")
+		return Todo{}, errors.New("Invalid input.")
 	}
 
 	return Todo{
 		Text: content,
 	}, nil
-
 }

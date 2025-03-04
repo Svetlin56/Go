@@ -30,7 +30,7 @@ type outputtable interface {
 
 func main() {
 	printSomething(1)
-	printSomething(1.6)
+	printSomething(1.5)
 	printSomething("Hello")
 
 	title, content := getNoteData()
@@ -57,36 +57,37 @@ func main() {
 	if err != nil {
 		return
 	}
+
 	outputData(userNote)
 }
 
 func printSomething(value interface{}) {
 	intVal, ok := value.(int)
 
-	if !ok {
+	if ok {
 		fmt.Println("Integer:", intVal)
 		return
 	}
 
 	floatVal, ok := value.(float64)
 
-	if !ok {
+	if ok {
 		fmt.Println("Float:", floatVal)
 		return
 	}
 
 	stringVal, ok := value.(string)
 
-	if !ok {
+	if ok {
 		fmt.Println("String:", stringVal)
 		return
 	}
 
 	// switch value.(type) {
 	// case int:
-	// 	fmt.Println("This is an integer: ", value)
+	// 	fmt.Println("Integer:", value)
 	// case float64:
-	// 	fmt.Println("This is a float: ", value)
+	// 	fmt.Println("Float:", value)
 	// case string:
 	// 	fmt.Println(value)
 	// }
@@ -101,17 +102,17 @@ func saveData(data saver) error {
 	err := data.Save()
 
 	if err != nil {
-		fmt.Println("Saving note failed")
+		fmt.Println("Saving the note failed.")
 		return err
 	}
-	fmt.Println("Note saved successfully")
+
+	fmt.Println("Saving the note succeeded!")
 	return nil
 }
 
 func getNoteData() (string, string) {
-	title := getUserInput("Note title: ")
-
-	content := getUserInput("Note content: ")
+	title := getUserInput("Note title:")
+	content := getUserInput("Note content:")
 
 	return title, content
 }
@@ -120,6 +121,7 @@ func getUserInput(prompt string) string {
 	fmt.Printf("%v ", prompt)
 
 	reader := bufio.NewReader(os.Stdin)
+
 	text, err := reader.ReadString('\n')
 
 	if err != nil {
