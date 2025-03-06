@@ -1,28 +1,22 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	numbers := []int{1, 2, 3, 4}
-	doubled := transformNumbers(&numbers, double)
+	numbers := []int{1, 10, 15}
+	sum := sumup(1, 10, 15, 40, -5)
+	anotherSum := sumup(1, numbers...)
 
-	fmt.Println(doubled)
+	fmt.Println(sum)
+	fmt.Println(anotherSum)
 }
 
-func transformNumbers(numbers *[]int, transform func(int) int) []int {
-	dNumbers := []int{}
-	for _, val := range *numbers {
-		dNumbers = append(dNumbers, transform(val))
+func sumup(startingValue int, numbers ...int) int {
+	sum := 0
+
+	for _, val := range numbers {
+		sum += val
 	}
-	return dNumbers
-}
 
-func double(number int) int {
-	return number * 2
-}
-
-func triple(number int) int {
-	return number * 3
+	return sum
 }
